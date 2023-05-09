@@ -4,12 +4,14 @@ import com.sun.tools.javac.code.Attribute;
 import fr.iut.montreuil.S4_R4_02_2023.num_50.joueur_sme.resources.Langues;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class JoueurDTO {
     private String pseudo;
     private String prenom;
     private int anneeNaissance;
-    private ArrayList<String> hobbies;
+    private List<String> hobbies;
     private Langues langue;
     private int score;
 
@@ -41,12 +43,13 @@ public class JoueurDTO {
         this.anneeNaissance = anneeNaissance;
     }
 
-    public ArrayList<String> getHobbies() {
+    public List<String> getHobbies() {
         return hobbies;
     }
 
     public void setHobbies(String hobbies) {
-        this.hobbies = hobbies;
+
+        this.hobbies = Arrays.stream(hobbies.split(",")).toList();
     }
 
     public Langues getLangue() {
