@@ -38,8 +38,8 @@ public class JoueurSI implements InterfaceJoueur {
         }
         List<String> hobbiesList = List.of(hobbies.split(","));
 
-        if(hobbiesList.size()<3){
-            throw new WrongListeHobbiesException("hobbies must be at least 3");
+        if(hobbiesList.size()<1){
+            throw new WrongListeHobbiesException("hobbies must be at least 1");
         }
         else if(hobbiesList.contains("")){
             throw new WrongListeHobbiesException("hobbies must not be empty");
