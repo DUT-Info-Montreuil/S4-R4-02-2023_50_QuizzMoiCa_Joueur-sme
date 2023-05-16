@@ -41,8 +41,8 @@ public class JoueurSI implements InterfaceJoueur {
         if(hobbiesList.size()<1){
             throw new WrongListeHobbiesException("hobbies must be at least 1");
         }
-        else if(hobbiesList.contains("")){
-            throw new WrongListeHobbiesException("hobbies must not be empty");
+        else if(hobbiesList.contains("") || hobbiesList.contains(" ")){
+            throw new WrongListeHobbiesException("one of the hobbies in the list is empty");
         }
         try {
             if (numLangue < 0 || numLangue > 4) {
