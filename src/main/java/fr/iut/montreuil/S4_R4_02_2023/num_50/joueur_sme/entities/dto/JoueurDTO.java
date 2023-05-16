@@ -1,9 +1,7 @@
 package fr.iut.montreuil.S4_R4_02_2023.num_50.joueur_sme.entities.dto;
 
-import com.sun.tools.javac.code.Attribute;
-import fr.iut.montreuil.S4_R4_02_2023.num_50.joueur_sme.resources.Langues;
+import fr.iut.montreuil.S4_R4_02_2023.num_50.joueur_sme.utils.enums.Langues;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -17,6 +15,15 @@ public class JoueurDTO {
 
     public JoueurDTO(){
 
+    }
+
+    public JoueurDTO(String pseudo, String prenom, int anneeNaissance, List<String> hobbies, Langues langue, int score) {
+        this.pseudo = pseudo;
+        this.prenom = prenom;
+        this.anneeNaissance = anneeNaissance;
+        this.hobbies = hobbies;
+        this.langue = langue;
+        this.score = score;
     }
 
     public String getPseudo() {
@@ -47,9 +54,9 @@ public class JoueurDTO {
         return hobbies;
     }
 
-    public void setHobbies(String hobbies) {
+    public void setHobbies(List<String> hobbies) {
 
-        this.hobbies = Arrays.stream(hobbies.split(",")).toList();
+        this.hobbies = hobbies;
     }
 
     public Langues getLangue() {
