@@ -14,24 +14,6 @@ public class AjouterPseudo implements InterfaceJoueur {
 
     @Override
     public JoueurDTO creerJoueur(String pseudo, String prenom, int anneeNaissance, String hobbies, int numLangue) throws MissingArgumentException, DuplicatedPseudoException, WrongArgumentException {
-        if (pseudo == null || pseudo.isEmpty()) {
-            throw new MissingArgumentException("Le pseudo est manquant");
-        }
-        if (pseudo.length() < 3 || pseudo.length() > 20) {
-            throw new WrongArgumentException("Le pseudo doit contenir entre 3 et 20 caractères");
-        }
-
-        for (JoueurDTO joueurDTO :allJoueur) {
-            if (joueurDTO.getPseudo().equals(pseudo)) {
-                throw new DuplicatedPseudoException("Le pseudo est déjà utilisé");
-            }
-        }
-
-        if(pseudo.trim().length() <= 1 ){
-            throw new WrongArgumentException("Le pseudo ne peut pas être vide");
-        }
-
-
         JoueurDTO joueurDTO = new JoueurDTO();
         joueurDTO.setPseudo(pseudo);
         allJoueur.add(joueurDTO);

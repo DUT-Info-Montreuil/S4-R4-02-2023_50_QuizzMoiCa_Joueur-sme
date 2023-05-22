@@ -11,27 +11,22 @@ import fr.iut.montreuil.S4_R4_02_2023.num_50.joueur_sme.utils.exceptions.WrongLa
 public class AjouterLangue implements InterfaceJoueur {
     @Override
     public JoueurDTO creerJoueur(String pseudo, String prenom, int anneeNaissance, String hobbies, int numLangue) throws MissingArgumentException, DuplicatedPseudoException, WrongArgumentException {
-
-        if (numLangue < 1 || numLangue > 5) {
-            throw new WrongLanguageException("Le numéro de langue doit être compris entre 1 et 3");
-        }
-
         JoueurDTO joueurDTO = new JoueurDTO();
         switch (numLangue){
-            case 1:
+            case 0:
                 joueurDTO.setLangue(Langues.FRANCAIS);
                 break;
-            case 2:
+            case 1:
                 joueurDTO.setLangue(Langues.ENGLISH);
                 break;
-            case 3:
+            case 2:
                 joueurDTO.setLangue(Langues.DEUTCH);
 
                 break;
-            case 4:
+            case 3:
                 joueurDTO.setLangue(Langues.ESPANA);
                 break;
-            case 5:
+            case 4:
                 joueurDTO.setLangue(Langues.ITALIA);
                 break;
         }

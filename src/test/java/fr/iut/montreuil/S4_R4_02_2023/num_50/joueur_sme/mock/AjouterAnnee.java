@@ -10,9 +10,6 @@ import fr.iut.montreuil.S4_R4_02_2023.num_50.joueur_sme.utils.exceptions.WrongAr
 public class AjouterAnnee implements InterfaceJoueur {
     @Override
     public JoueurDTO creerJoueur(String pseudo, String prenom, int anneeNaissance, String hobbies, int numLangue) throws MissingArgumentException, DuplicatedPseudoException, WrongArgumentException {
-        if (anneeNaissance < 1900 || anneeNaissance > 2021) {
-            throw new WrongAnneesException("L'année de naissance doit être comprise entre 1900 et 2021");
-        }
         JoueurDTO joueurDTO = new JoueurDTO();
         joueurDTO.setAnneeNaissance(anneeNaissance);
         return joueurDTO;

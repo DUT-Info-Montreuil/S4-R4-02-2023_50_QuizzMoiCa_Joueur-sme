@@ -18,8 +18,9 @@ public class TestJoueur {
         AjouterAnnee ajouterAnnee = new AjouterAnnee();
         Assertions.assertEquals(joueurAttendu.getAnneeNaissance(), ajouterAnnee.creerJoueur("pseudo", "prenom", 2000, "hobbies", 1).getAnneeNaissance());
 
+        WrongAnnee wrongAnnee = new WrongAnnee();
         Assertions.assertThrows(WrongAnneesException.class, () -> {
-            ajouterAnnee.creerJoueur("pseudo", "prenom", 2022, "hobbies", 1);
+            wrongAnnee.creerJoueur("pseudo", "prenom", 2022, "hobbies", 1);
         });
 
     }
@@ -29,10 +30,12 @@ public class TestJoueur {
         JoueurDTO JoueurAttendu = new JoueurDTO();
         JoueurAttendu.setLangue(Langues.FRANCAIS);
         AjouterLangue ajouterLangue = new AjouterLangue();
-        Assertions.assertEquals(JoueurAttendu.getLangue(), ajouterLangue.creerJoueur("pseudo", "prenom", 2000, "hobbies", 1).getLangue());
+        Assertions.assertEquals(JoueurAttendu.getLangue(), ajouterLangue.creerJoueur("pseudo", "prenom", 2000, "hobbies", 0).getLangue());
+
+        WrongLangue wrongLangue = new WrongLangue();
 
         Assertions.assertThrows(WrongLanguageException.class, () -> {
-            ajouterLangue.creerJoueur("pseudo", "prenom", 2000, "hobbies", 6);
+            wrongLangue.creerJoueur("pseudo", "prenom", 2000, "hobbies", 6);
         });
 
 
@@ -47,10 +50,15 @@ public class TestJoueur {
         hobbies.add("hobbie2");
         JoueurAttendu.setHobbies(hobbies);
         AjouterHobbies ajouterHobbies = new AjouterHobbies();
-        Assertions.assertEquals(JoueurAttendu.getHobbies(), ajouterHobbies.creerJoueur("pseudo", "prenom", 2000, "hobbie1  , hobbie2", 1).getHobbies());
+        Assertions.assertEquals(JoueurAttendu.getHobbies(), ajouterHobbies.creerJoueur("pseudo", "prenom", 2000, "hobbie1,hobbie2", 1).getHobbies());
 
+        WrongHobbies wrongHobbies = new WrongHobbies();
         Assertions.assertThrows(WrongListeHobbiesException.class, () -> {
-            ajouterHobbies.creerJoueur("pseudo", "prenom", 2000, null, 6);
+            wrongHobbies.creerJoueur("pseudo", "prenom", 2000, null, 4);
+        });
+
+        Assertions.assertThrows(WrongListeHobbiesException.class , () ->{
+            wrongHobbies.creerJoueur("pseudo", "prenom", 2000, "hobbie1,   ,hobbie2", 4);
         });
 
 
@@ -64,8 +72,10 @@ public class TestJoueur {
         AjouterPseudo ajouterPseudo = new AjouterPseudo();
         Assertions.assertEquals(JoueurAttendu.getPseudo(), ajouterPseudo.creerJoueur("pseudo", "prenom", 2000, "hobbies", 1).getPseudo());
 
+        WrongPseudo wrongPseudo = new WrongPseudo();
+
         Assertions.assertThrows(DuplicatedPseudoException.class, () -> {
-            ajouterPseudo.creerJoueur("pseudo", "prenom", 2000, "hobbies", 1);
+            wrongPseudo.creerJoueur("pseudo", "prenom", 2000, "hobbies", 1);
         });
 
 
@@ -79,8 +89,10 @@ public class TestJoueur {
         AjouterPrenom ajouterPrenom = new AjouterPrenom();
         Assertions.assertEquals(JoueurAttendu.getPrenom(), ajouterPrenom.creerJoueur("pseudo", "prenom", 2000, "hobbies", 1).getPrenom());
 
+        WrongPrenom wrongPrenom = new WrongPrenom();
+
         Assertions.assertThrows(WrongArgumentException.class, () -> {
-            ajouterPrenom.creerJoueur("pseudo", " ", 2000, "hobbies", 1);
+            wrongPrenom.creerJoueur("pseudo", " ", 2000, "hobbies", 1);
         });
 
     }
