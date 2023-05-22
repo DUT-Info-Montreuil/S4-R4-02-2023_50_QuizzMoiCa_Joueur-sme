@@ -2,25 +2,37 @@ package fr.iut.montreuil.S4_R4_02_2023.num_50.joueur_sme.impl;
 
 import fr.iut.montreuil.S4_R4_02_2023.num_50.joueur_sme.entities.dto.JoueurDTO;
 import fr.iut.montreuil.S4_R4_02_2023.num_50.joueur_sme.mock.*;
+import fr.iut.montreuil.S4_R4_02_2023.num_50.joueur_sme.modeles.InterfaceJoueur;
 import fr.iut.montreuil.S4_R4_02_2023.num_50.joueur_sme.utils.enums.Langues;
 import fr.iut.montreuil.S4_R4_02_2023.num_50.joueur_sme.utils.exceptions.*;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 
 public class TestJoueur {
 
+    InterfaceJoueur joueurService;
+
+    @BeforeEach
+    public void inti(){
+        joueurService = new JoueurSI();
+    }
+
     @Test
     public void TesterAnnéeNaissance() throws DuplicatedPseudoException, MissingArgumentException, WrongArgumentException {
         JoueurDTO joueurAttendu = new JoueurDTO();
         joueurAttendu.setAnneeNaissance(2000);
-        AjouterAnnee ajouterAnnee = new AjouterAnnee();
-        Assertions.assertEquals(joueurAttendu.getAnneeNaissance(), ajouterAnnee.creerJoueur("pseudo", "prenom", 2000, "hobbies", 1).getAnneeNaissance());
 
-        WrongAnnee wrongAnnee = new WrongAnnee();
+        //joueurService = new AjouterAnneeMock();
+
+        Assertions.assertEquals(joueurAttendu.getAnneeNaissance(), joueurService.creerJoueur("pseudo1", "prenom1", 2000, "hobbies", 1).getAnneeNaissance());
+
+        //joueurService = new WrongAnneeMock();
+
         Assertions.assertThrows(WrongAnneesException.class, () -> {
-            wrongAnnee.creerJoueur("pseudo", "prenom", 2022, "hobbies", 1);
+            joueurService.creerJoueur("pseudo2", "prenom2", 2022, "hobbies", 1);
         });
 
     }
@@ -29,13 +41,15 @@ public class TestJoueur {
     public void TestLangue() throws DuplicatedPseudoException, MissingArgumentException, WrongArgumentException {
         JoueurDTO JoueurAttendu = new JoueurDTO();
         JoueurAttendu.setLangue(Langues.FRANCAIS);
-        AjouterLangue ajouterLangue = new AjouterLangue();
-        Assertions.assertEquals(JoueurAttendu.getLangue(), ajouterLangue.creerJoueur("pseudo", "prenom", 2000, "hobbies", 0).getLangue());
 
-        WrongLangue wrongLangue = new WrongLangue();
+        //joueurService= new AjouterLangueMock();
+
+        Assertions.assertEquals(JoueurAttendu.getLangue(), joueurService.creerJoueur("pseudo3", "prenom3", 2000, "hobbies", 0).getLangue());
+
+        //joueurService = new WrongLangueMock();
 
         Assertions.assertThrows(WrongLanguageException.class, () -> {
-            wrongLangue.creerJoueur("pseudo", "prenom", 2000, "hobbies", 6);
+            joueurService.creerJoueur("pseudo4", "prenom4", 2000, "hobbies", 6);
         });
 
 
@@ -49,16 +63,16 @@ public class TestJoueur {
         hobbies.add("hobbie1");
         hobbies.add("hobbie2");
         JoueurAttendu.setHobbies(hobbies);
-        AjouterHobbies ajouterHobbies = new AjouterHobbies();
-        Assertions.assertEquals(JoueurAttendu.getHobbies(), ajouterHobbies.creerJoueur("pseudo", "prenom", 2000, "hobbie1,hobbie2", 1).getHobbies());
+        //joueurService = new AjouterHobbiesMock();
+        Assertions.assertEquals(JoueurAttendu.getHobbies(), joueurService.creerJoueur("pseudo5", "prenom5", 2000, "hobbie1,hobbie2", 1).getHobbies());
 
-        WrongHobbies wrongHobbies = new WrongHobbies();
-        Assertions.assertThrows(WrongListeHobbiesException.class, () -> {
-            wrongHobbies.creerJoueur("pseudo", "prenom", 2000, null, 4);
+        //joueurService = new WrongHobbiesMock();
+        Assertions.assertThrows(MissingArgumentException.class, () -> {
+            joueurService.creerJoueur("pseudo6", "prenom6", 2000, null, 4);
         });
 
         Assertions.assertThrows(WrongListeHobbiesException.class , () ->{
-            wrongHobbies.creerJoueur("pseudo", "prenom", 2000, "hobbie1,   ,hobbie2", 4);
+            joueurService.creerJoueur("pseudo7", "prenom7", 2000, "hobbie1,   ,hobbie2", 4);
         });
 
 
@@ -69,13 +83,13 @@ public class TestJoueur {
     public  void TestDuplicatePseaudo() throws DuplicatedPseudoException, MissingArgumentException, WrongArgumentException {
         JoueurDTO JoueurAttendu = new JoueurDTO();
         JoueurAttendu.setPseudo("pseudo");
-        AjouterPseudo ajouterPseudo = new AjouterPseudo();
-        Assertions.assertEquals(JoueurAttendu.getPseudo(), ajouterPseudo.creerJoueur("pseudo", "prenom", 2000, "hobbies", 1).getPseudo());
+        //joueurService = new AjouterPseudoMock();
+        Assertions.assertEquals(JoueurAttendu.getPseudo(), joueurService.creerJoueur("pseudo", "prenom8", 2000, "hobbies", 1).getPseudo());
 
-        WrongPseudo wrongPseudo = new WrongPseudo();
+        //joueurService = new WrongPseudoMock();
 
         Assertions.assertThrows(DuplicatedPseudoException.class, () -> {
-            wrongPseudo.creerJoueur("pseudo", "prenom", 2000, "hobbies", 1);
+            joueurService.creerJoueur("pseudo", "prenom9", 2000, "hobbies", 1);
         });
 
 
@@ -85,14 +99,14 @@ public class TestJoueur {
     @Test
     public void TestPrenom() throws DuplicatedPseudoException, MissingArgumentException, WrongArgumentException {
         JoueurDTO JoueurAttendu = new JoueurDTO();
-        JoueurAttendu.setPrenom("prenom");
-        AjouterPrenom ajouterPrenom = new AjouterPrenom();
-        Assertions.assertEquals(JoueurAttendu.getPrenom(), ajouterPrenom.creerJoueur("pseudo", "prenom", 2000, "hobbies", 1).getPrenom());
+        JoueurAttendu.setPrenom("prenom10");
+        //joueurService = new AjouterPrenomMock();
+        Assertions.assertEquals(JoueurAttendu.getPrenom(), joueurService.creerJoueur("pseudo10", "prenom10", 2000, "hobbies", 1).getPrenom());
 
-        WrongPrenom wrongPrenom = new WrongPrenom();
+        //joueurService = new WrongPrenomMock();
 
-        Assertions.assertThrows(WrongArgumentException.class, () -> {
-            wrongPrenom.creerJoueur("pseudo", " ", 2000, "hobbies", 1);
+        Assertions.assertThrows(MissingArgumentException.class, () -> {
+            joueurService.creerJoueur("pseudo11", " ", 2000, "hobbies", 1);
         });
 
     }

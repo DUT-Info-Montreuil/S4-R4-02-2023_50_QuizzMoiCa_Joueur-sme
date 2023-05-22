@@ -2,7 +2,7 @@ package fr.iut.montreuil.S4_R4_02_2023.num_50.joueur_sme.entities.dto;
 
 import fr.iut.montreuil.S4_R4_02_2023.num_50.joueur_sme.utils.enums.Langues;
 
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.List;
 
 public class JoueurDTO {
@@ -12,6 +12,8 @@ public class JoueurDTO {
     private List<String> hobbies;
     private Langues langue;
     private int score;
+
+    ArrayList<StatsJoueur> allStats = new ArrayList<>();
 
     public JoueurDTO(){
 
@@ -73,5 +75,14 @@ public class JoueurDTO {
 
     public void setScore(int score) {
         this.score = score;
+    }
+
+
+    public void addStats(StatsJoueur s1){
+        allStats.add(s1);
+    }
+
+    public ArrayList<StatsJoueur> getAllStats(){
+        return allStats;
     }
 }

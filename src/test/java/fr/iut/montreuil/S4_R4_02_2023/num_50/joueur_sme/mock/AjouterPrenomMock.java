@@ -6,9 +6,11 @@ import fr.iut.montreuil.S4_R4_02_2023.num_50.joueur_sme.utils.exceptions.Duplica
 import fr.iut.montreuil.S4_R4_02_2023.num_50.joueur_sme.utils.exceptions.MissingArgumentException;
 import fr.iut.montreuil.S4_R4_02_2023.num_50.joueur_sme.utils.exceptions.WrongArgumentException;
 
-public class WrongPrenom implements InterfaceJoueur {
+public class AjouterPrenomMock implements InterfaceJoueur {
     @Override
     public JoueurDTO creerJoueur(String pseudo, String prenom, int anneeNaissance, String hobbies, int numLangue) throws MissingArgumentException, DuplicatedPseudoException, WrongArgumentException {
-        throw new WrongArgumentException("Wrong args ");
+        JoueurDTO joueurDTO = new JoueurDTO();
+        joueurDTO.setPrenom(prenom);
+        return joueurDTO;
     }
 }

@@ -5,12 +5,12 @@ import fr.iut.montreuil.S4_R4_02_2023.num_50.joueur_sme.modeles.InterfaceJoueur;
 import fr.iut.montreuil.S4_R4_02_2023.num_50.joueur_sme.utils.exceptions.DuplicatedPseudoException;
 import fr.iut.montreuil.S4_R4_02_2023.num_50.joueur_sme.utils.exceptions.MissingArgumentException;
 import fr.iut.montreuil.S4_R4_02_2023.num_50.joueur_sme.utils.exceptions.WrongArgumentException;
-import fr.iut.montreuil.S4_R4_02_2023.num_50.joueur_sme.utils.exceptions.WrongListeHobbiesException;
 
-public class WrongHobbies implements InterfaceJoueur {
-
+public class AjouterAnneeMock implements InterfaceJoueur {
     @Override
     public JoueurDTO creerJoueur(String pseudo, String prenom, int anneeNaissance, String hobbies, int numLangue) throws MissingArgumentException, DuplicatedPseudoException, WrongArgumentException {
-        throw new WrongListeHobbiesException("wrong hobbies");
+        JoueurDTO joueurDTO = new JoueurDTO();
+        joueurDTO.setAnneeNaissance(anneeNaissance);
+        return joueurDTO;
     }
 }

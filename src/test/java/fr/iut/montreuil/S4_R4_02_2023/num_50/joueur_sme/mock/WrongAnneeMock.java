@@ -7,11 +7,9 @@ import fr.iut.montreuil.S4_R4_02_2023.num_50.joueur_sme.utils.exceptions.Missing
 import fr.iut.montreuil.S4_R4_02_2023.num_50.joueur_sme.utils.exceptions.WrongAnneesException;
 import fr.iut.montreuil.S4_R4_02_2023.num_50.joueur_sme.utils.exceptions.WrongArgumentException;
 
-public class AjouterAnnee implements InterfaceJoueur {
+public class WrongAnneeMock implements InterfaceJoueur {
     @Override
     public JoueurDTO creerJoueur(String pseudo, String prenom, int anneeNaissance, String hobbies, int numLangue) throws MissingArgumentException, DuplicatedPseudoException, WrongArgumentException {
-        JoueurDTO joueurDTO = new JoueurDTO();
-        joueurDTO.setAnneeNaissance(anneeNaissance);
-        return joueurDTO;
+        throw new WrongAnneesException("wrong year");
     }
 }

@@ -6,9 +6,17 @@ import fr.iut.montreuil.S4_R4_02_2023.num_50.joueur_sme.utils.exceptions.Duplica
 import fr.iut.montreuil.S4_R4_02_2023.num_50.joueur_sme.utils.exceptions.MissingArgumentException;
 import fr.iut.montreuil.S4_R4_02_2023.num_50.joueur_sme.utils.exceptions.WrongArgumentException;
 
-public class WrongPseudo implements InterfaceJoueur {
+import java.util.ArrayList;
+
+public class AjouterPseudoMock implements InterfaceJoueur {
+
+    ArrayList<JoueurDTO> allJoueur = new ArrayList<JoueurDTO>();
+
     @Override
     public JoueurDTO creerJoueur(String pseudo, String prenom, int anneeNaissance, String hobbies, int numLangue) throws MissingArgumentException, DuplicatedPseudoException, WrongArgumentException {
-        throw new DuplicatedPseudoException("duplicate");
+        JoueurDTO joueurDTO = new JoueurDTO();
+        joueurDTO.setPseudo(pseudo);
+        allJoueur.add(joueurDTO);
+        return joueurDTO;
     }
 }
