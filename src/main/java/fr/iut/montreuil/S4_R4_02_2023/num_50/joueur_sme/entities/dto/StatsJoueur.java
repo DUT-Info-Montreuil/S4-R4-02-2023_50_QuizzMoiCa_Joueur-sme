@@ -7,7 +7,26 @@ public class StatsJoueur {
 
         String averageTimePerQuestion;
 
+        public StatsJoueur(int idStat, int nbGoodAnswer, String timePlayed, String averageTimePerQuestion) {
+            this.idStat = idStat;
+            this.nbGoodAnswer = nbGoodAnswer;
+            this.timePlayed = timePlayed;
+            this.averageTimePerQuestion = averageTimePerQuestion;
+        }
 
+        public int getIdStat() {
+                return idStat;
+        }
 
+        public int getNbGoodAnswer() {
+                return nbGoodAnswer;
+        }
 
+        public String getTimePlayed() {
+                return timePlayed;
+        }
+
+        public String getAverageTimePerQuestion() {
+                return averageTimePerQuestion;
+        }
 }
