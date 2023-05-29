@@ -14,6 +14,10 @@ public class StatsJoueur {
             this.averageTimePerQuestion = averageTimePerQuestion;
         }
 
+        public StatsJoueur() {
+
+        }
+
         public int getIdStat() {
                 return idStat;
         }
